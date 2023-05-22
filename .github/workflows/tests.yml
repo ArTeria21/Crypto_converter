@@ -9,7 +9,7 @@ jobs:
     - name: Тестируем случай с отсутствием аргументов...
       run: |
         chmod +x test/no_arguments.sh
-        .test/no_arguments.sh
+        ./test/no_arguments.sh
     - name: Тестируем случай с несуществующей криптовалютой...
       run: |
         chmod +x /test/currency_is_not_exist.sh
