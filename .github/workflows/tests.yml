@@ -1,33 +1,22 @@
-name: Тестирование конвертера криптовалют
-on: [push, pull_request]
+name: Test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
 jobs:
-  tests:
-    name: Тестирование конвертера
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Тестируем случай с отсутствием аргументов...
-      run: |
-        chmod +x converter.sh
-        chmod +x test/no_arguments.sh
-        ./test/no_arguments.sh
-    - name: Тестируем случай с несуществующей криптовалютой...
-      run: |
-        chmod +x converter.sh
-        chmod +x /test/currency_is_not_exist.sh
-        ./test/currency_is_not_exist.sh
-    - name: Тестируем случай с негативным значением превого аргумента... 
-      run: |
-        chmod +x converter.sh
-        chmod +x test/negative_amount.sh
-        ./test/negative_amount.sh
-    - name: Случай, когда все хорошо №1...
-      run: |
-        chmod +x converter.sh
-        chmod +x test/everything_is_good_1.sh
-        ./test/everything_is_good_1.sh
-    - name: Случай, когда все хорошо №2...
-      run: |
-        chmod +x converter.sh
-        chmod +x test/everything_is_good_2.sh
-        ./test/everything_is_good_2.sh
+      - uses: actions/checkout@v3
+
+      - name: Tests 
+        run: | 
+          chmod +x converter.sh 
+          cd test
+          chmod +x run.sh 
+          ./run.sh 
